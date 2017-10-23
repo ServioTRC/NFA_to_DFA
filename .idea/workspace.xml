@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d1515b58-0888-4764-9d83-358ce04a2026" name="Default" comment="">
+    <list default="true" id="d1515b58-0888-4764-9d83-358ce04a2026" name="Default" comment="Generación de estados de transicion DFA">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFA_test.txt" afterPath="$PROJECT_DIR$/NFA_test.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nfa_to_dfa.py" afterPath="$PROJECT_DIR$/nfa_to_dfa.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -19,8 +18,8 @@
       <file leaf-file-name="nfa_to_dfa.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nfa_to_dfa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="34" column="77" lean-forward="false" selection-start-line="34" selection-start-column="77" selection-end-line="34" selection-end-column="77" />
+            <state relative-caret-position="399">
+              <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -30,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/NFA_test.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="65" lean-forward="false" selection-start-line="0" selection-start-column="65" selection-end-line="0" selection-end-column="65" />
+              <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -150,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508770346262</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Estados de transicion(falta corregir)">
+      <created>1508773984180</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1508773984180</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -188,7 +194,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Lectura de varios automatas en solo archivo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lectura de varios automatas en solo archivo" />
+    <MESSAGE value="Estados de transicion(falta corregir)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Estados de transicion(falta corregir)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -198,15 +205,15 @@
     <entry file="file://$PROJECT_DIR$/NFA_test.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="65" lean-forward="false" selection-start-line="0" selection-start-column="65" selection-end-line="0" selection-end-column="65" />
+          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nfa_to_dfa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="34" column="77" lean-forward="false" selection-start-line="34" selection-start-column="77" selection-end-line="34" selection-end-column="77" />
+        <state relative-caret-position="399">
+          <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
