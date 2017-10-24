@@ -1,11 +1,3 @@
-'''
-Jorge Alexis Rubio Sumano A01372074
-Servio Tulio Reyes Castillo A01371719
-
-Program which transforms a transformation from a NFA to a DFA
-
-'''
-
 from itertools import chain, combinations
 
 def powerset(iterable):
@@ -32,59 +24,75 @@ def obtener_nodos(valores):
             lista_nodos.append(lista)
     return lista_nodos
 
+def obtener_transicion(combinacion, simbolo):
+    #Se obtine el estado de transicion de la combinación de paramtero, con el simbolo indicado
+    global todos_nodos
+    lista_transiciones = []
+    if(len(combinacion) == 1):
+        for transicion in todos_nodos:
+            if(transicion[0]==simbolo and transicion[1]==combinacion[0]):
+                #print("estado transicion con ", simbolo, "= ", transicion[2])
+                lista_transiciones.append(transicion[2])
+                return lista_transiciones
+
+
+    else:
+        for estado in combinacion:
+            for transicion in todos_nodos:
+                if(transicion[0]==simbolo and estado==transicion[1]):
+                    if(not(transicion[2] in lista_transiciones)):
+                        lista_transiciones.append(transicion[2])
+
+        #print("estado transicion con ", simbolo, "= ", lista_transiciones)
+    return lista_transiciones
+
+
+
+#Variables globales
+todos_nodos = []
+estados_transicion = "{"
+
 def main():
-    todos_nodos = []
-    conjunto_nodos = set([])
-    conjunto_simbolos = set([])
+    global todos_nodos, estados_transicion
+    archivo_NFA = open(input());
+    automatas = archivo_NFA.read().split("\n")
+    #Procesamiento de cada NFA
+    for nfa in automatas:
+        ultima_linea = False
+        conjunto_nodos = set([])
+        conjunto_simbolos = set([])
+        valores = nfa
+        while not ultima_linea:
+            if valores[-1] == "}":
+                ultima_linea = True
+                valores = valores[:-1]
 
-    #Creacion de archivos
-    input_file_name = input("Enter the file name to use as NFA input: ")
-    output_file_name = input("Enter the file name to save the DFA output: ")
-    valores = ""
-    file = open(input_file_name, "r")   
-    for line in file.readlines():
-        valores += line;
-    file.close()
-
-    file = open(output_file_name, "w")
-
-    valores = valores[1:-1]
-    todos_nodos = obtener_nodos(valores)
-    for nodo in todos_nodos:
-        #Agrega los nodos y los simbolos del conjunto
-        conjunto_simbolos.add(nodo[0])
-        conjunto_nodos.add(nodo[1])
-        conjunto_nodos.add(nodo[2])
-
-    combinaciones = list(powerset(conjunto_nodos))
-    #print("Conjuntos", end="")
-    file.write("Conjuntos")
-    simbolos = list(conjunto_simbolos)
-    for simbolo in simbolos:
-        #print("\t"*(len(conjunto_nodos)//2+1), end="")
-        #print(simbolo, end="")
-        file.write("\t"*(len(conjunto_nodos)//2+1))
-        file.write(simbolo)
-    #print()
-    file.write("\n")
-    for combinacion in combinaciones:
-        #print(str(combinacion)+("\t"*((len(conjunto_nodos)//2+1)-(len(combinacion)//2)+1)), end='')
-        file.write(str(combinacion)+("\t"*((len(conjunto_nodos)//2+1)-(len(combinacion)//2)+1)))
-        for simbolo in simbolos:
-            conjunto_parcial = set([])
+            valores = valores[1:]
+            todos_nodos = obtener_nodos(valores)
             for nodo in todos_nodos:
-                if nodo[0] == simbolo and nodo[1] in combinacion:
-                    conjunto_parcial.add(nodo[2])
-            if len(conjunto_parcial) == 0:
-                #print("{}", end='')
-                file.write("{}")
-            else:
-                #print(conjunto_parcial, end='')
-                file.write(str(conjunto_parcial))
-            #print("\t"*((len(conjunto_nodos)//2+1)-(len(conjunto_parcial)//2)), end='')
-            file.write("\t"*((len(conjunto_nodos)//2+1)-(len(conjunto_parcial)//2)))
-        #print()
-        file.write("\n")
-    file.close()
+                #Agrega los nodos y los simbolos del conjunto
+                conjunto_simbolos.add(nodo[0])
+                conjunto_nodos.add(nodo[1])
+                conjunto_nodos.add(nodo[2])
 
+            print("Conjuntos", end="")
+            simbolos = list(conjunto_simbolos)
+            for simbolo in simbolos:
+                print("\t"*(len(conjunto_nodos)//2), end="")
+                print(simbolo, end="")
+            combinaciones = list(powerset(conjunto_nodos))
+
+            #Genera todos los estados de transicion
+            for combinacion in combinaciones:
+                print(combinacion)
+                #Por cada elemento del alfabeto
+                for simbolo in conjunto_simbolos:
+                    if(len(combinacion)>=1):
+                        estados_transicion += "(" + str(simbolo) + ",{"
+                        #Da formato al conjunto {q0,q1,...,qn}
+                        for estado in combinacion:
+                            estados_transicion += estado + ","
+                        estados_transicion += "}," + str(obtener_transicion(combinacion,simbolo)) + "),"
+            estados_transicion += "}"
+            print("\nDFA: ", estados_transicion)
 main()
