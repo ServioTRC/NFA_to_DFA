@@ -1,3 +1,13 @@
+"""
+
+2ndo Proyecto Matematicas Computacionales
+Transformación NFA a DFA
+
+Servio Tulio Reyes Castillo A01371719
+Jorge Alexis Rubio Sumano   A01372074
+
+"""
+
 from itertools import chain, combinations
 
 def powerset(iterable):
@@ -57,7 +67,7 @@ def main():
     global todos_nodos, estados_transicion
     try:
         input_file_name = input("Enter the file name to use as NFA input: ")
-        output_file_name = input("Enter the file name to save the DFA output: ")
+        output_file_name = "salida.txt"
         archivo_NFA = open(input_file_name)
         automatas = archivo_NFA.read().split("\n")
         #Procesamiento de cada NFA
@@ -98,10 +108,10 @@ def main():
                         for estado in combinacion:
                             estados_transicion += estado + ""
                         if len(obtener_transicion(combinacion,simbolo)) == 0:
-                            estados_transicion += ",),"
+                            estados_transicion += ",), \n"
                         else:
-                            estados_transicion += "," + str(obtener_transicion(combinacion,simbolo)) + "),"
-                estados_transicion = estados_transicion[:-1]
+                            estados_transicion += "," + str(obtener_transicion(combinacion,simbolo)) + "),\n"
+                estados_transicion = estados_transicion[:-2]
                 estados_transicion += "}"
                 #print("\nDFA: ", estados_transicion)
                 archivo_DFA = open(output_file_name, "w")
